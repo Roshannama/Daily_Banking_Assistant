@@ -1,0 +1,12 @@
+{
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.22621-SP0",
+  "router": "deterministic keyword baseline",
+  "composer": "deterministic evidence templates",
+  "embeddings": "local TF-IDF word/bigram vectors",
+  "vector_store": "FAISS IndexFlatIP",
+  "model": null,
+  "llm_judge": "OpenRouter/nvidia/nemotron-3.5-lightning:free",
+  "seed": 42,
+  "dataset_version": "1.0"
+}

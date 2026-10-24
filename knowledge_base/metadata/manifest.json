@@ -1,0 +1,128 @@
+[
+  {
+    "document_id": "accounts",
+    "document_title": "Account access and balances",
+    "version": "1.0",
+    "effective_date": "2026-10-24",
+    "classification": "public",
+    "allowed_roles": [
+      "customer"
+    ],
+    "approved": true,
+    "current": true,
+    "source_file": "markdown/accounts.md",
+    "sha256": "d86991ad83d3f76b748c9a9dfc57439b3d64b999cd98b8606cad4b04e9a3ee6c"
+  },
+  {
+    "document_id": "payments",
+    "document_title": "UPI and payment failures",
+    "version": "1.0",
+    "effective_date": "2026-10-24",
+    "classification": "public",
+    "allowed_roles": [
+      "customer"
+    ],
+    "approved": true,
+    "current": true,
+    "source_file": "markdown/payments.md",
+    "sha256": "3044fb1b4534973ae9ec047907bcec4dae69c33eddc14c62e54ffe91dff7687a"
+  },
+  {
+    "document_id": "cards",
+    "document_title": "Debit and credit card services",
+    "version": "1.0",
+    "effective_date": "2026-10-24",
+    "classification": "public",
+    "allowed_roles": [
+      "customer"
+    ],
+    "approved": true,
+    "current": true,
+    "source_file": "markdown/cards.md",
+    "sha256": "72cb1c158713d789fb951f1053cc94d990ceca41fd33a6da64de4ed753509784"
+  },
+  {
+    "document_id": "fraud",
+    "document_title": "Fraud and disputes",
+    "version": "1.0",
+    "effective_date": "2026-10-24",
+    "classification": "public",
+    "allowed_roles": [
+      "customer"
+    ],
+    "approved": true,
+    "current": true,
+    "source_file": "markdown/fraud.md",
+    "sha256": "9ae76351bb08a2e38b3f0c73026092b2635bba454d218216f2654adbec3f8a77"
+  },
+  {
+    "document_id": "credit",
+    "document_title": "Credit card billing",
+    "version": "1.0",
+    "effective_date": "2026-10-24",
+    "classification": "public",
+    "allowed_roles": [
+      "customer"
+    ],
+    "approved": true,
+    "current": true,
+    "source_file": "markdown/credit.md",
+    "sha256": "ad15f0d172acc580ccac6390c2ab47e1570bea35ccc8e362b3f26ade6cc2ef9a"
+  },
+  {
+    "document_id": "loans",
+    "document_title": "Loans and EMI",
+    "version": "1.0",
+    "effective_date": "2026-10-24",
+    "classification": "public",
+    "allowed_roles": [
+      "customer"
+    ],
+    "approved": true,
+    "current": true,
+    "source_file": "markdown/loans.md",
+    "sha256": "d50bca9517954bd12477842a5257f660bfb2575116ba82628c0934694890d898"
+  },
+  {
+    "document_id": "offers",
+    "document_title": "Personalized offers",
+    "version": "1.0",
+    "effective_date": "2026-10-24",
+    "classification": "public",
+    "allowed_roles": [
+      "customer"
+    ],
+    "approved": true,
+    "current": true,
+    "source_file": "markdown/offers.md",
+    "sha256": "43d27ad59f5de827294ca2da582a548c65a47111a3053d46eecbab4e86ce8e88"
+  },
+  {
+    "document_id": "privacy",
+    "document_title": "Banking privacy and AI safety",
+    "version": "1.0",
+    "effective_date": "2026-10-24",
+    "classification": "public",
+    "allowed_roles": [
+      "customer"
+    ],
+    "approved": true,
+    "current": true,
+    "source_file": "markdown/privacy.md",
+    "sha256": "6aed37b5d2cb4b2bbac31fdb5ca0c9369ffee4ba0e4bde14f2a27733247141e0"
+  },
+  {
+    "document_id": "bills",
+    "document_title": "Bill reminders and financial guidance",
+    "version": "1.0",
+    "effective_date": "2026-10-24",
+    "classification": "public",
+    "allowed_roles": [
+      "customer"
+    ],
+    "approved": true,
+    "current": true,
+    "source_file": "markdown/bills.md",
+    "sha256": "9adcb613d67b9d6f7d640f3fb648c32b4d320240aadf19e4f5eb4c7fb90a4a4b"
+  }
+]

@@ -1,0 +1,220 @@
+<!doctype html><meta charset="utf-8"><style>body{font:15px system-ui;max-width:1200px;margin:36px auto;padding:0 24px;color:#15293f}table{border-collapse:collapse;font-size:12px;display:block;overflow:auto}td,th{border:1px solid #d5dfe9;padding:7px;text-align:left;max-width:420px;overflow-wrap:anywhere}th{background:#e9f2fa}pre{white-space:pre-wrap;background:#f3f6fa;padding:18px}img{max-width:100%}</style><h1>SecureBank prototype evaluation</h1><p>Executed results against synthetic records. This is not production certification or evidence of real-LLM safety.</p><h2>Environment</h2><pre>{
+  &quot;python&quot;: &quot;3.12.10&quot;,
+  &quot;platform&quot;: &quot;Windows-11-10.0.22621-SP0&quot;,
+  &quot;router&quot;: &quot;deterministic keyword baseline&quot;,
+  &quot;composer&quot;: &quot;deterministic evidence templates&quot;,
+  &quot;embeddings&quot;: &quot;local TF-IDF word/bigram vectors&quot;,
+  &quot;vector_store&quot;: &quot;FAISS IndexFlatIP&quot;,
+  &quot;model&quot;: null,
+  &quot;llm_judge&quot;: &quot;OpenRouter/nvidia/nemotron-3.5-lightning:free&quot;,
+  &quot;seed&quot;: 42,
+  &quot;dataset_version&quot;: &quot;1.0&quot;
+}</pre><h2>Executable backend, security and native UI tests</h2><pre>{
+  &quot;tests&quot;: 45,
+  &quot;failures&quot;: 0,
+  &quot;errors&quot;: 0,
+  &quot;skipped&quot;: 0
+}</pre><a href="pytest-results.xml">JUnit evidence</a><h2>orchestrator_eval</h2><a href='orchestrator_eval.html'>Detailed cases, failures and root causes</a><pre>{&quot;passed&quot;: 120, &quot;failed&quot;: 0, &quot;skipped&quot;: 0, &quot;errored&quot;: 0}</pre><pre>{
+  &quot;intent_accuracy&quot;: 1.0,
+  &quot;per_agent&quot;: {
+    &quot;account&quot;: {
+      &quot;precision&quot;: 1.0,
+      &quot;recall&quot;: 1.0,
+      &quot;f1&quot;: 1.0,
+      &quot;support&quot;: 30
+    },
+    &quot;payments&quot;: {
+      &quot;precision&quot;: 1.0,
+      &quot;recall&quot;: 1.0,
+      &quot;f1&quot;: 1.0,
+      &quot;support&quot;: 18
+    },
+    &quot;cards&quot;: {
+      &quot;precision&quot;: 1.0,
+      &quot;recall&quot;: 1.0,
+      &quot;f1&quot;: 1.0,
+      &quot;support&quot;: 18
+    },
+    &quot;loans&quot;: {
+      &quot;precision&quot;: 1.0,
+      &quot;recall&quot;: 1.0,
+      &quot;f1&quot;: 1.0,
+      &quot;support&quot;: 18
+    },
+    &quot;fraud&quot;: {
+      &quot;precision&quot;: 1.0,
+      &quot;recall&quot;: 1.0,
+      &quot;f1&quot;: 1.0,
+      &quot;support&quot;: 18
+    },
+    &quot;knowledge&quot;: {
+      &quot;precision&quot;: 1.0,
+      &quot;recall&quot;: 1.0,
+      &quot;f1&quot;: 1.0,
+      &quot;support&quot;: 24
+    },
+    &quot;unsupported&quot;: {
+      &quot;precision&quot;: 1.0,
+      &quot;recall&quot;: 1.0,
+      &quot;f1&quot;: 1.0,
+      &quot;support&quot;: 12
+    }
+  },
+  &quot;macro_f1&quot;: 1.0,
+  &quot;tool_selection_accuracy&quot;: 1.0,
+  &quot;tool_precision&quot;: 1.0,
+  &quot;tool_recall&quot;: 1.0,
+  &quot;rag_routing_accuracy&quot;: 1.0,
+  &quot;pin_detection_recall&quot;: 1.0,
+  &quot;confirmation_detection_recall&quot;: 1.0,
+  &quot;unsupported_detection_recall&quot;: 1.0,
+  &quot;multi_agent_routing_accuracy&quot;: 1.0,
+  &quot;p50_ms&quot;: 0.024100008886307478,
+  &quot;p95_ms&quot;: 0.04536501364782444,
+  &quot;confusion_matrix&quot;: {
+    &quot;labels&quot;: [
+      &quot;account&quot;,
+      &quot;payments&quot;,
+      &quot;cards&quot;,
+      &quot;loans&quot;,
+      &quot;fraud&quot;,
+      &quot;knowledge&quot;,
+      &quot;unsupported&quot;,
+      &quot;mixed&quot;
+    ],
+    &quot;values&quot;: [
+      [
+        24,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        12,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        18,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        12,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        12,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        12,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        18
+      ]
+    ]
+  }
+}</pre><h2>rag_eval</h2><a href='rag_eval.html'>Detailed cases, failures and root causes</a><pre>{&quot;passed&quot;: 67, &quot;failed&quot;: 0, &quot;skipped&quot;: 0, &quot;errored&quot;: 0}</pre><pre>{
+  &quot;recall_at_1&quot;: 0.9568965517241379,
+  &quot;recall_at_3&quot;: 1.0,
+  &quot;recall_at_5&quot;: 1.0,
+  &quot;precision_at_5&quot;: 0.20344827586206898,
+  &quot;mrr&quot;: 0.9827586206896551,
+  &quot;ndcg_at_5&quot;: 0.9872734397783262,
+  &quot;document_top1_accuracy&quot;: 0.9655172413793104,
+  &quot;section_chunk_top1_accuracy&quot;: 0.9655172413793104,
+  &quot;expected_citation_in_top3&quot;: 1.0,
+  &quot;citation_source_integrity&quot;: 1.0,
+  &quot;no_answer_detection_accuracy&quot;: 1.0,
+  &quot;extractive_answer_supported_claim_rate&quot;: 1.0,
+  &quot;answer_completeness_proxy_recall3&quot;: 1.0,
+  &quot;unsupported_source_rate&quot;: 0.0,
+  &quot;p50_ms&quot;: 0.23510001483373344,
+  &quot;p95_ms&quot;: 5.340020003495727
+}</pre><h2>response_safety_eval</h2><a href='response_safety_eval.html'>Detailed cases, failures and root causes</a><pre>{&quot;passed&quot;: 180, &quot;failed&quot;: 0, &quot;skipped&quot;: 4, &quot;errored&quot;: 0}</pre><pre>{
+  &quot;financial_fact_accuracy&quot;: 1.0,
+  &quot;answer_correctness&quot;: 1.0,
+  &quot;supported_expected_fact_rate&quot;: 1.0,
+  &quot;expected_fact_error_rate&quot;: 0.0,
+  &quot;pii_leakage_rate&quot;: 0.0,
+  &quot;cross_customer_denial_success&quot;: 1.0,
+  &quot;pin_enforcement_rate&quot;: 1.0,
+  &quot;confirmation_enforcement_rate&quot;: 1.0,
+  &quot;unauthorized_action_prevention_rate&quot;: 1.0,
+  &quot;citation_correctness&quot;: 1.0,
+  &quot;appropriate_refusal_rate&quot;: 1.0,
+  &quot;end_to_end_task_success&quot;: 1.0,
+  &quot;toxicity_rate&quot;: null,
+  &quot;unsafe_response_rate&quot;: null,
+  &quot;open_ended_hallucination_rate&quot;: null,
+  &quot;p50_ms&quot;: 53.90015000011772,
+  &quot;p95_ms&quot;: 56.20678501145448
+}</pre><h2>Initial routing failures and repairs</h2><pre>[
+  {
+    &quot;query&quot;: &quot;What is left after paying bills?&quot;,
+    &quot;cause&quot;: &quot;Routing mismatch: agents, tools, rag, pin, intent&quot;
+  },
+  {
+    &quot;query&quot;: &quot;List my reminders&quot;,
+    &quot;cause&quot;: &quot;Routing mismatch: agents, tools, intent&quot;
+  },
+  {
+    &quot;query&quot;: &quot;My outstanding loan balance&quot;,
+    &quot;cause&quot;: &quot;Routing mismatch: agents, tools, intent&quot;
+  },
+  {
+    &quot;query&quot;: &quot;Check payment status and explain why&quot;,
+    &quot;cause&quot;: &quot;Routing mismatch: agents, tools, pin, intent&quot;
+  }
+]</pre><p>EMI substring matching and personal/public intent ambiguity were corrected. These are development-set improvements, not independent holdout gains.</p><h2>Limitations and recommended fixes</h2><ul><li>ROUTER_MODE is deterministic for this evaluation; live OpenRouter routing was not tested.</li><li>DeepEval LLM judging was not completed. Sending generated banking response fixtures to OpenRouter was blocked by the approval review; request user approval before running with --with-llm-judge.</li><li>Contextual toxicity, unsafe-advice judgment, and customer satisfaction are not measured; no validated classifier or customer ratings are in the golden data.</li><li>The datasets are authored synthetic acceptance cases, not an independent benchmark; identity variants share query templates.</li><li>Final teammate database integration is untested. SQLite adapter is tested against its documented contract only.</li><li>No production upstream identity integration; production mode fails closed. Session storage, PIN throttling, and fixture writes are process-local; run one worker.</li><li>Live payments, card replacement fulfillment, investment advice and scheduled notifications are unsupported.</li><li>Extractive policy responses and deterministic financial templates constrain unsupported prose but do not prove open-ended conversational quality.</li></ul><p>Integrate the real schema and identity provider, evaluate live models and independent adversarial cases, validate semantic embeddings, and persist authorization state before deployment.</p><h2>Charts</h2><img src="agent_performance.png"><img src="confusion_matrix.png">

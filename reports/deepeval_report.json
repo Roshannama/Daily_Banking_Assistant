@@ -1,0 +1,11 @@
+{
+  "name": "deepeval_response_judgment",
+  "framework": "DeepEval",
+  "status": "not_run_external_transfer_requires_explicit_opt_in",
+  "evaluated": 0,
+  "metrics": {
+    "judge_correctness_mean": null,
+    "judge_pass_rate": null
+  },
+  "reason": "LLM judging sends generated banking response fixtures to OpenRouter. Re-run with --with-llm-judge only after approving that transfer."
+}

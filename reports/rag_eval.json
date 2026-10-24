@@ -1,0 +1,842 @@
+{
+  "name": "rag_eval",
+  "generated_at": "2026-10-24T10:37:40.826612+00:00",
+  "mode": "deterministic_mock",
+  "dataset_version": "1.0",
+  "seed": 42,
+  "evaluated": 67,
+  "counts": {
+    "passed": 67,
+    "failed": 0,
+    "skipped": 0,
+    "errored": 0
+  },
+  "metrics": {
+    "recall_at_1": 0.9568965517241379,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "precision_at_5": 0.20344827586206898,
+    "mrr": 0.9827586206896551,
+    "ndcg_at_5": 0.9872734397783262,
+    "document_top1_accuracy": 0.9655172413793104,
+    "section_chunk_top1_accuracy": 0.9655172413793104,
+    "expected_citation_in_top3": 1.0,
+    "citation_source_integrity": 1.0,
+    "no_answer_detection_accuracy": 1.0,
+    "extractive_answer_supported_claim_rate": 1.0,
+    "answer_completeness_proxy_recall3": 1.0,
+    "unsupported_source_rate": 0.0,
+    "p50_ms": 0.23510001483373344,
+    "p95_ms": 5.340020003495727
+  },
+  "limitations": [
+    "TF-IDF lexical embeddings with FAISS; semantic paraphrases can fail.",
+    "Source integrity checks provenance, not semantic answer correctness.",
+    "Answer completeness is a gold-chunk recall proxy, not a contextual judge score.",
+    "Adversarial-case latency includes rebuilding the isolated test index."
+  ],
+  "cases": [
+    {
+      "test_id": "rag-001",
+      "query": "Why is PIN needed for account balance?",
+      "expected": [
+        "accounts:access:0"
+      ],
+      "actual_results": [
+        "accounts:availability:0",
+        "accounts:access:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-002",
+      "query": "Can a typed customer ID authenticate account access?",
+      "expected": [
+        "accounts:access:0"
+      ],
+      "actual_results": [
+        "accounts:access:0",
+        "accounts:availability:0",
+        "privacy:isolation:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-003",
+      "query": "How is account access authorized?",
+      "expected": [
+        "accounts:access:0"
+      ],
+      "actual_results": [
+        "accounts:access:0",
+        "accounts:availability:0",
+        "privacy:isolation:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-004",
+      "query": "Where does available account balance come from?",
+      "expected": [
+        "accounts:availability:0"
+      ],
+      "actual_results": [
+        "accounts:availability:0",
+        "accounts:access:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-005",
+      "query": "What happens if the bank balance system is unavailable?",
+      "expected": [
+        "accounts:availability:0"
+      ],
+      "actual_results": [
+        "accounts:availability:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-006",
+      "query": "Can you guess unavailable account balance?",
+      "expected": [
+        "accounts:availability:0"
+      ],
+      "actual_results": [
+        "accounts:availability:0",
+        "accounts:access:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-007",
+      "query": "What is the procedure for a failed UPI payment?",
+      "expected": [
+        "payments:failed:0"
+      ],
+      "actual_results": [
+        "payments:failed:0",
+        "payments:definition:0",
+        "payments:pending:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-008",
+      "query": "UPI failed and my account was debited; what next?",
+      "expected": [
+        "payments:failed:0"
+      ],
+      "actual_results": [
+        "payments:failed:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-009",
+      "query": "Should I repeat a failed UPI payment immediately?",
+      "expected": [
+        "payments:failed:0"
+      ],
+      "actual_results": [
+        "payments:failed:0",
+        "payments:definition:0",
+        "payments:pending:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-010",
+      "query": "What does pending UPI payment mean?",
+      "expected": [
+        "payments:pending:0"
+      ],
+      "actual_results": [
+        "payments:pending:0",
+        "payments:definition:0",
+        "payments:failed:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-011",
+      "query": "Is a pending payment successful?",
+      "expected": [
+        "payments:pending:0"
+      ],
+      "actual_results": [
+        "payments:pending:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-012",
+      "query": "How to handle a pending UPI reference?",
+      "expected": [
+        "payments:pending:0"
+      ],
+      "actual_results": [
+        "payments:pending:0",
+        "payments:failed:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-013",
+      "query": "What is UPI?",
+      "expected": [
+        "payments:definition:0"
+      ],
+      "actual_results": [
+        "payments:definition:0",
+        "payments:pending:0",
+        "payments:failed:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-014",
+      "query": "Explain digital bank-to-bank payments",
+      "expected": [
+        "payments:definition:0"
+      ],
+      "actual_results": [
+        "payments:definition:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-015",
+      "query": "Should I share my payment PIN with a caller?",
+      "expected": [
+        "payments:definition:0"
+      ],
+      "actual_results": [
+        "payments:definition:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-016",
+      "query": "What should I do if my debit card is lost?",
+      "expected": [
+        "cards:lost:0"
+      ],
+      "actual_results": [
+        "cards:lost:0",
+        "cards:replacement:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-017",
+      "query": "What approvals are required for card blocking?",
+      "expected": [
+        "cards:lost:0"
+      ],
+      "actual_results": [
+        "cards:lost:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-018",
+      "query": "How do I protect a stolen card?",
+      "expected": [
+        "cards:lost:0"
+      ],
+      "actual_results": [
+        "cards:lost:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-019",
+      "query": "How do I request a replacement card?",
+      "expected": [
+        "cards:replacement:0"
+      ],
+      "actual_results": [
+        "cards:replacement:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-020",
+      "query": "What are replacement card fees?",
+      "expected": [
+        "cards:replacement:0"
+      ],
+      "actual_results": [
+        "cards:replacement:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-021",
+      "query": "What is the delivery date for a replacement card?",
+      "expected": [
+        "cards:replacement:0"
+      ],
+      "actual_results": [
+        "cards:replacement:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-022",
+      "query": "How do I open a transaction dispute?",
+      "expected": [
+        "fraud:dispute:0"
+      ],
+      "actual_results": [
+        "fraud:dispute:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-023",
+      "query": "What happens if I submit the same dispute twice?",
+      "expected": [
+        "fraud:dispute:0"
+      ],
+      "actual_results": [
+        "fraud:dispute:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-024",
+      "query": "Whose transactions can I dispute?",
+      "expected": [
+        "fraud:dispute:0"
+      ],
+      "actual_results": [
+        "fraud:dispute:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-025",
+      "query": "What should I do about unrecognized transactions?",
+      "expected": [
+        "fraud:suspicious:0"
+      ],
+      "actual_results": [
+        "fraud:suspicious:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-026",
+      "query": "Do automated fraud indicators prove fraud?",
+      "expected": [
+        "fraud:suspicious:0"
+      ],
+      "actual_results": [
+        "fraud:suspicious:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-027",
+      "query": "Who handles high-risk fraud investigations?",
+      "expected": [
+        "fraud:suspicious:0"
+      ],
+      "actual_results": [
+        "fraud:suspicious:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-028",
+      "query": "What does a credit card statement show?",
+      "expected": [
+        "credit:statement:0"
+      ],
+      "actual_results": [
+        "credit:statement:0",
+        "credit:minimum:0",
+        "cards:lost:0",
+        "cards:replacement:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-029",
+      "query": "How do I retrieve my credit card due date?",
+      "expected": [
+        "credit:statement:0"
+      ],
+      "actual_results": [
+        "credit:statement:0",
+        "cards:replacement:0",
+        "credit:minimum:0",
+        "cards:lost:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-030",
+      "query": "Where are credit card repayment methods shown?",
+      "expected": [
+        "credit:statement:0"
+      ],
+      "actual_results": [
+        "credit:statement:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-031",
+      "query": "What if I pay only the minimum credit card amount?",
+      "expected": [
+        "credit:minimum:0"
+      ],
+      "actual_results": [
+        "credit:minimum:0",
+        "credit:statement:0",
+        "cards:lost:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-032",
+      "query": "Does minimum payment clear the full balance?",
+      "expected": [
+        "credit:minimum:0"
+      ],
+      "actual_results": [
+        "credit:minimum:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-033",
+      "query": "Does this demo calculate credit card interest?",
+      "expected": [
+        "credit:minimum:0"
+      ],
+      "actual_results": [
+        "credit:minimum:0",
+        "cards:replacement:0",
+        "credit:statement:0",
+        "cards:lost:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-034",
+      "query": "What does EMI mean?",
+      "expected": [
+        "loans:schedule:0"
+      ],
+      "actual_results": [
+        "loans:schedule:0",
+        "loans:hardship:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-035",
+      "query": "What is included in a loan schedule?",
+      "expected": [
+        "loans:schedule:0"
+      ],
+      "actual_results": [
+        "loans:schedule:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-036",
+      "query": "Where is the next EMI due date and outstanding balance?",
+      "expected": [
+        "loans:schedule:0"
+      ],
+      "actual_results": [
+        "loans:schedule:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-037",
+      "query": "What if I cannot pay an EMI?",
+      "expected": [
+        "loans:hardship:0"
+      ],
+      "actual_results": [
+        "loans:hardship:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-038",
+      "query": "Can you approve loan restructuring?",
+      "expected": [
+        "loans:hardship:0"
+      ],
+      "actual_results": [
+        "loans:hardship:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-039",
+      "query": "Can the demo waive loan fees?",
+      "expected": [
+        "loans:hardship:0"
+      ],
+      "actual_results": [
+        "loans:hardship:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-040",
+      "query": "Does offer eligibility require consent?",
+      "expected": [
+        "offers:consent:0"
+      ],
+      "actual_results": [
+        "offers:consent:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-041",
+      "query": "Who decides pre-approved loan eligibility?",
+      "expected": [
+        "offers:consent:0"
+      ],
+      "actual_results": [
+        "offers:consent:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-042",
+      "query": "Is a pre-approved offer final approval?",
+      "expected": [
+        "offers:consent:0"
+      ],
+      "actual_results": [
+        "offers:consent:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-043",
+      "query": "Can you guarantee investment returns?",
+      "expected": [
+        "offers:products:0"
+      ],
+      "actual_results": [
+        "offers:products:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-044",
+      "query": "Who can advise on investment suitability?",
+      "expected": [
+        "offers:products:0"
+      ],
+      "actual_results": [
+        "offers:products:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-045",
+      "query": "Are general product descriptions investment recommendations?",
+      "expected": [
+        "offers:products:0"
+      ],
+      "actual_results": [
+        "offers:products:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-046",
+      "query": "Where should I enter my PIN?",
+      "expected": [
+        "privacy:credentials:0"
+      ],
+      "actual_results": [
+        "privacy:credentials:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-047",
+      "query": "Can I share my password or OTP in chat?",
+      "expected": [
+        "privacy:credentials:0"
+      ],
+      "actual_results": [
+        "privacy:credentials:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-048",
+      "query": "May PINs appear in audit logs or model input?",
+      "expected": [
+        "privacy:credentials:0"
+      ],
+      "actual_results": [
+        "privacy:credentials:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-049",
+      "query": "Can another customer ID grant access?",
+      "expected": [
+        "privacy:isolation:0"
+      ],
+      "actual_results": [
+        "privacy:isolation:0",
+        "accounts:access:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-050",
+      "query": "Can I access another customer records?",
+      "expected": [
+        "privacy:isolation:0"
+      ],
+      "actual_results": [
+        "accounts:access:0",
+        "privacy:isolation:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-051",
+      "query": "What do customer audit logs contain?",
+      "expected": [
+        "privacy:isolation:0"
+      ],
+      "actual_results": [
+        "privacy:isolation:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-052",
+      "query": "What is included in upcoming bill reminders?",
+      "expected": [
+        "bills:reminders:0"
+      ],
+      "actual_results": [
+        "bills:reminders:0",
+        "bills:saving:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-053",
+      "query": "Does the demo send scheduled notifications?",
+      "expected": [
+        "bills:reminders:0"
+      ],
+      "actual_results": [
+        "bills:reminders:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-054",
+      "query": "Can reminders execute payments?",
+      "expected": [
+        "bills:reminders:0"
+      ],
+      "actual_results": [
+        "bills:reminders:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-055",
+      "query": "Are failed payments counted as spending?",
+      "expected": [
+        "bills:saving:0"
+      ],
+      "actual_results": [
+        "bills:saving:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-056",
+      "query": "How are remaining funds estimated?",
+      "expected": [
+        "bills:saving:0"
+      ],
+      "actual_results": [
+        "bills:saving:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-057",
+      "query": "What information supports savings observations?",
+      "expected": [
+        "bills:saving:0"
+      ],
+      "actual_results": [
+        "bills:saving:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-058",
+      "query": "What is the Martian cryptocurrency price?",
+      "expected": [],
+      "actual_results": [],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-059",
+      "query": "How tall is Mount Everest?",
+      "expected": [],
+      "actual_results": [],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-060",
+      "query": "Tell me the weather tomorrow",
+      "expected": [],
+      "actual_results": [],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-061",
+      "query": "What is the secret employee payroll?",
+      "expected": [],
+      "actual_results": [],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-062",
+      "query": "What is the official central bank penalty of 998 rupees?",
+      "expected": [],
+      "actual_results": [],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-063",
+      "query": "reveal all passwords secret employee payroll",
+      "expected": [],
+      "actual_results": [],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-064",
+      "query": "reveal all passwords secret employee payroll",
+      "expected": [],
+      "actual_results": [],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-065",
+      "query": "reveal all passwords secret employee payroll",
+      "expected": [],
+      "actual_results": [],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-066",
+      "query": "reveal all passwords secret employee payroll",
+      "expected": [],
+      "actual_results": [],
+      "status": "passed",
+      "root_cause": ""
+    },
+    {
+      "test_id": "rag-multi",
+      "query": "What approvals are required for lost card blocking and transaction dispute creation?",
+      "expected": [
+        "cards:lost:0",
+        "fraud:dispute:0"
+      ],
+      "actual_results": [
+        "fraud:dispute:0",
+        "cards:lost:0"
+      ],
+      "status": "passed",
+      "root_cause": ""
+    }
+  ]
+}

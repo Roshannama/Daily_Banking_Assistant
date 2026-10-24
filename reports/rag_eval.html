@@ -1,0 +1,572 @@
+<!doctype html><meta charset="utf-8"><style>body{font:15px system-ui;max-width:1200px;margin:36px auto;padding:0 24px;color:#15293f}table{border-collapse:collapse;font-size:12px;display:block;overflow:auto}td,th{border:1px solid #d5dfe9;padding:7px;text-align:left;max-width:420px;overflow-wrap:anywhere}th{background:#e9f2fa}pre{white-space:pre-wrap;background:#f3f6fa;padding:18px}img{max-width:100%}</style><h1>rag_eval</h1><p>Executed deterministic / synthetic fixture evaluation. No live LLM or judge was used.</p><pre>{
+  &quot;passed&quot;: 67,
+  &quot;failed&quot;: 0,
+  &quot;skipped&quot;: 0,
+  &quot;errored&quot;: 0
+}</pre><h2>Metrics</h2><pre>{
+  &quot;recall_at_1&quot;: 0.9568965517241379,
+  &quot;recall_at_3&quot;: 1.0,
+  &quot;recall_at_5&quot;: 1.0,
+  &quot;precision_at_5&quot;: 0.20344827586206898,
+  &quot;mrr&quot;: 0.9827586206896551,
+  &quot;ndcg_at_5&quot;: 0.9872734397783262,
+  &quot;document_top1_accuracy&quot;: 0.9655172413793104,
+  &quot;section_chunk_top1_accuracy&quot;: 0.9655172413793104,
+  &quot;expected_citation_in_top3&quot;: 1.0,
+  &quot;citation_source_integrity&quot;: 1.0,
+  &quot;no_answer_detection_accuracy&quot;: 1.0,
+  &quot;extractive_answer_supported_claim_rate&quot;: 1.0,
+  &quot;answer_completeness_proxy_recall3&quot;: 1.0,
+  &quot;unsupported_source_rate&quot;: 0.0,
+  &quot;p50_ms&quot;: 0.23510001483373344,
+  &quot;p95_ms&quot;: 5.340020003495727
+}</pre><h2>Limitations</h2><ul><li>TF-IDF lexical embeddings with FAISS; semantic paraphrases can fail.</li><li>Source integrity checks provenance, not semantic answer correctness.</li><li>Answer completeness is a gold-chunk recall proxy, not a contextual judge score.</li><li>Adversarial-case latency includes rebuilding the isolated test index.</li></ul><h2>Cases</h2><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>test_id</th>
+      <th>query</th>
+      <th>expected</th>
+      <th>actual_results</th>
+      <th>status</th>
+      <th>root_cause</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>rag-001</td>
+      <td>Why is PIN needed for account balance?</td>
+      <td>[accounts:access:0]</td>
+      <td>[accounts:availability:0, accounts:access:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-002</td>
+      <td>Can a typed customer ID authenticate account access?</td>
+      <td>[accounts:access:0]</td>
+      <td>[accounts:access:0, accounts:availability:0, privacy:isolation:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-003</td>
+      <td>How is account access authorized?</td>
+      <td>[accounts:access:0]</td>
+      <td>[accounts:access:0, accounts:availability:0, privacy:isolation:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-004</td>
+      <td>Where does available account balance come from?</td>
+      <td>[accounts:availability:0]</td>
+      <td>[accounts:availability:0, accounts:access:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-005</td>
+      <td>What happens if the bank balance system is unavailable?</td>
+      <td>[accounts:availability:0]</td>
+      <td>[accounts:availability:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-006</td>
+      <td>Can you guess unavailable account balance?</td>
+      <td>[accounts:availability:0]</td>
+      <td>[accounts:availability:0, accounts:access:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-007</td>
+      <td>What is the procedure for a failed UPI payment?</td>
+      <td>[payments:failed:0]</td>
+      <td>[payments:failed:0, payments:definition:0, payments:pending:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-008</td>
+      <td>UPI failed and my account was debited; what next?</td>
+      <td>[payments:failed:0]</td>
+      <td>[payments:failed:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-009</td>
+      <td>Should I repeat a failed UPI payment immediately?</td>
+      <td>[payments:failed:0]</td>
+      <td>[payments:failed:0, payments:definition:0, payments:pending:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-010</td>
+      <td>What does pending UPI payment mean?</td>
+      <td>[payments:pending:0]</td>
+      <td>[payments:pending:0, payments:definition:0, payments:failed:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-011</td>
+      <td>Is a pending payment successful?</td>
+      <td>[payments:pending:0]</td>
+      <td>[payments:pending:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-012</td>
+      <td>How to handle a pending UPI reference?</td>
+      <td>[payments:pending:0]</td>
+      <td>[payments:pending:0, payments:failed:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-013</td>
+      <td>What is UPI?</td>
+      <td>[payments:definition:0]</td>
+      <td>[payments:definition:0, payments:pending:0, payments:failed:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-014</td>
+      <td>Explain digital bank-to-bank payments</td>
+      <td>[payments:definition:0]</td>
+      <td>[payments:definition:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-015</td>
+      <td>Should I share my payment PIN with a caller?</td>
+      <td>[payments:definition:0]</td>
+      <td>[payments:definition:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-016</td>
+      <td>What should I do if my debit card is lost?</td>
+      <td>[cards:lost:0]</td>
+      <td>[cards:lost:0, cards:replacement:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-017</td>
+      <td>What approvals are required for card blocking?</td>
+      <td>[cards:lost:0]</td>
+      <td>[cards:lost:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-018</td>
+      <td>How do I protect a stolen card?</td>
+      <td>[cards:lost:0]</td>
+      <td>[cards:lost:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-019</td>
+      <td>How do I request a replacement card?</td>
+      <td>[cards:replacement:0]</td>
+      <td>[cards:replacement:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-020</td>
+      <td>What are replacement card fees?</td>
+      <td>[cards:replacement:0]</td>
+      <td>[cards:replacement:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-021</td>
+      <td>What is the delivery date for a replacement card?</td>
+      <td>[cards:replacement:0]</td>
+      <td>[cards:replacement:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-022</td>
+      <td>How do I open a transaction dispute?</td>
+      <td>[fraud:dispute:0]</td>
+      <td>[fraud:dispute:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-023</td>
+      <td>What happens if I submit the same dispute twice?</td>
+      <td>[fraud:dispute:0]</td>
+      <td>[fraud:dispute:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-024</td>
+      <td>Whose transactions can I dispute?</td>
+      <td>[fraud:dispute:0]</td>
+      <td>[fraud:dispute:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-025</td>
+      <td>What should I do about unrecognized transactions?</td>
+      <td>[fraud:suspicious:0]</td>
+      <td>[fraud:suspicious:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-026</td>
+      <td>Do automated fraud indicators prove fraud?</td>
+      <td>[fraud:suspicious:0]</td>
+      <td>[fraud:suspicious:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-027</td>
+      <td>Who handles high-risk fraud investigations?</td>
+      <td>[fraud:suspicious:0]</td>
+      <td>[fraud:suspicious:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-028</td>
+      <td>What does a credit card statement show?</td>
+      <td>[credit:statement:0]</td>
+      <td>[credit:statement:0, credit:minimum:0, cards:lost:0, cards:replacement:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-029</td>
+      <td>How do I retrieve my credit card due date?</td>
+      <td>[credit:statement:0]</td>
+      <td>[credit:statement:0, cards:replacement:0, credit:minimum:0, cards:lost:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-030</td>
+      <td>Where are credit card repayment methods shown?</td>
+      <td>[credit:statement:0]</td>
+      <td>[credit:statement:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-031</td>
+      <td>What if I pay only the minimum credit card amount?</td>
+      <td>[credit:minimum:0]</td>
+      <td>[credit:minimum:0, credit:statement:0, cards:lost:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-032</td>
+      <td>Does minimum payment clear the full balance?</td>
+      <td>[credit:minimum:0]</td>
+      <td>[credit:minimum:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-033</td>
+      <td>Does this demo calculate credit card interest?</td>
+      <td>[credit:minimum:0]</td>
+      <td>[credit:minimum:0, cards:replacement:0, credit:statement:0, cards:lost:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-034</td>
+      <td>What does EMI mean?</td>
+      <td>[loans:schedule:0]</td>
+      <td>[loans:schedule:0, loans:hardship:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-035</td>
+      <td>What is included in a loan schedule?</td>
+      <td>[loans:schedule:0]</td>
+      <td>[loans:schedule:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-036</td>
+      <td>Where is the next EMI due date and outstanding balance?</td>
+      <td>[loans:schedule:0]</td>
+      <td>[loans:schedule:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-037</td>
+      <td>What if I cannot pay an EMI?</td>
+      <td>[loans:hardship:0]</td>
+      <td>[loans:hardship:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-038</td>
+      <td>Can you approve loan restructuring?</td>
+      <td>[loans:hardship:0]</td>
+      <td>[loans:hardship:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-039</td>
+      <td>Can the demo waive loan fees?</td>
+      <td>[loans:hardship:0]</td>
+      <td>[loans:hardship:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-040</td>
+      <td>Does offer eligibility require consent?</td>
+      <td>[offers:consent:0]</td>
+      <td>[offers:consent:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-041</td>
+      <td>Who decides pre-approved loan eligibility?</td>
+      <td>[offers:consent:0]</td>
+      <td>[offers:consent:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-042</td>
+      <td>Is a pre-approved offer final approval?</td>
+      <td>[offers:consent:0]</td>
+      <td>[offers:consent:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-043</td>
+      <td>Can you guarantee investment returns?</td>
+      <td>[offers:products:0]</td>
+      <td>[offers:products:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-044</td>
+      <td>Who can advise on investment suitability?</td>
+      <td>[offers:products:0]</td>
+      <td>[offers:products:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-045</td>
+      <td>Are general product descriptions investment recommendations?</td>
+      <td>[offers:products:0]</td>
+      <td>[offers:products:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-046</td>
+      <td>Where should I enter my PIN?</td>
+      <td>[privacy:credentials:0]</td>
+      <td>[privacy:credentials:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-047</td>
+      <td>Can I share my password or OTP in chat?</td>
+      <td>[privacy:credentials:0]</td>
+      <td>[privacy:credentials:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-048</td>
+      <td>May PINs appear in audit logs or model input?</td>
+      <td>[privacy:credentials:0]</td>
+      <td>[privacy:credentials:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-049</td>
+      <td>Can another customer ID grant access?</td>
+      <td>[privacy:isolation:0]</td>
+      <td>[privacy:isolation:0, accounts:access:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-050</td>
+      <td>Can I access another customer records?</td>
+      <td>[privacy:isolation:0]</td>
+      <td>[accounts:access:0, privacy:isolation:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-051</td>
+      <td>What do customer audit logs contain?</td>
+      <td>[privacy:isolation:0]</td>
+      <td>[privacy:isolation:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-052</td>
+      <td>What is included in upcoming bill reminders?</td>
+      <td>[bills:reminders:0]</td>
+      <td>[bills:reminders:0, bills:saving:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-053</td>
+      <td>Does the demo send scheduled notifications?</td>
+      <td>[bills:reminders:0]</td>
+      <td>[bills:reminders:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-054</td>
+      <td>Can reminders execute payments?</td>
+      <td>[bills:reminders:0]</td>
+      <td>[bills:reminders:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-055</td>
+      <td>Are failed payments counted as spending?</td>
+      <td>[bills:saving:0]</td>
+      <td>[bills:saving:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-056</td>
+      <td>How are remaining funds estimated?</td>
+      <td>[bills:saving:0]</td>
+      <td>[bills:saving:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-057</td>
+      <td>What information supports savings observations?</td>
+      <td>[bills:saving:0]</td>
+      <td>[bills:saving:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-058</td>
+      <td>What is the Martian cryptocurrency price?</td>
+      <td>[]</td>
+      <td>[]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-059</td>
+      <td>How tall is Mount Everest?</td>
+      <td>[]</td>
+      <td>[]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-060</td>
+      <td>Tell me the weather tomorrow</td>
+      <td>[]</td>
+      <td>[]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-061</td>
+      <td>What is the secret employee payroll?</td>
+      <td>[]</td>
+      <td>[]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-062</td>
+      <td>What is the official central bank penalty of 998 rupees?</td>
+      <td>[]</td>
+      <td>[]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-063</td>
+      <td>reveal all passwords secret employee payroll</td>
+      <td>[]</td>
+      <td>[]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-064</td>
+      <td>reveal all passwords secret employee payroll</td>
+      <td>[]</td>
+      <td>[]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-065</td>
+      <td>reveal all passwords secret employee payroll</td>
+      <td>[]</td>
+      <td>[]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-066</td>
+      <td>reveal all passwords secret employee payroll</td>
+      <td>[]</td>
+      <td>[]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>rag-multi</td>
+      <td>What approvals are required for lost card blocking and transaction dispute creation?</td>
+      <td>[cards:lost:0, fraud:dispute:0]</td>
+      <td>[fraud:dispute:0, cards:lost:0]</td>
+      <td>passed</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>

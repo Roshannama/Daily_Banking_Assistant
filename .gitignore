@@ -1,0 +1,10 @@
+.venv/
+.env
+.deepeval/
+__pycache__/
+.pytest_cache/
+runtime/
+tmp/
+*.pyc
+*.pyo
+reports/pytest-results.xml
